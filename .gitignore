@@ -1,0 +1,8 @@
+__pycache__/
+tests.py
+Lib/
+Scripts/
+pyvenv.cfg
+build/
+dist/
+*.egg-info/
