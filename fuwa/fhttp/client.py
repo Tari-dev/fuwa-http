@@ -1,4 +1,5 @@
 import sys
+import logging
 from typing import (
     Any,
     Dict,
@@ -20,6 +21,8 @@ from .errors import (
     Forbidden
 )
 
+
+_log = logging.getLogger(__name__)
 
 class Route:
     BASE: ClassVar[str] = "https://discord.com/api/v10"
@@ -90,6 +93,8 @@ class HTTPClient:
         if not self.__session:
             opts = self.session_opts
             self.__session = aiohttp.ClientSession(**opts)
+
+        _log.info("Making %s request to %s" % (method, url))
 
         async with self.__session.request(method, url, **kwargs) as r:
             data = await self.read_response(r)
