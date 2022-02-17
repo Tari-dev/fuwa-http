@@ -1,5 +1,6 @@
 class HTTPException(Exception):
     def __init__(self, resp, data):
+        self.data = data
         self.status = resp.status
         self.message = data.get("message")
 
